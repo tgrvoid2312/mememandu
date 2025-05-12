@@ -3,43 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>As Mememandu</title>
+  <title>Mememandu</title>
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
 </head>
 <body>
-  <header>
-    <div class="logo">🌀 As Mememandu</div>
-    <a href="admin.html" class="login-btn">Login</a>
+  <header class="header">
+    <div class="logo">Mememandu</div>
+    <nav>
+      <a href="admin.html" class="admin-login">Admin Login</a>
+    </nav>
   </header>
 
-  <section class="hero">
-    <h1>Welcome to As Mememandu</h1>
-    <p>The ultimate place to discover and share memes! 🤩</p>
-  </section>
+  <main class="main-content">
+    <section class="intro">
+      <h1>Welcome to Mememandu</h1>
+      <p>The ultimate destination for discovering and sharing memes. Explore, laugh, or upload your own memes to the community!</p>
+    </section>
 
-  <section class="actions">
-    <div class="card" onclick="openSearch('image')">
-      <h2>📷 Search Image Memes</h2>
-      <input type="text" placeholder="Enter keyword..." />
-      <button>Search</button>
+    <div class="search-sections">
+      <div class="search-box">
+        <h2>Search Image Memes</h2>
+        <input type="text" id="imageSearch" placeholder="Search image memes..." />
+        <button onclick="searchMemes('image')">Search</button>
+        <div id="imageResults"></div>
+      </div>
+
+      <div class="search-box">
+        <h2>Search Video Memes</h2>
+        <input type="text" id="videoSearch" placeholder="Search video memes..." />
+        <button onclick="searchMemes('video')">Search</button>
+        <div id="videoResults"></div>
+      </div>
+
+      <div class="upload-box">
+        <h2>Upload a Meme</h2>
+        <form id="uploadForm">
+          <input type="file" id="memeFile" required />
+          <select id="memeType">
+            <option value="image">Image Meme</option>
+            <option value="video">Video Meme</option>
+          </select>
+          <input type="text" id="memeKeyword" placeholder="Enter a keyword" required />
+          <button type="submit">Upload Meme</button>
+        </form>
+      </div>
     </div>
+  </main>
 
-    <div class="card" onclick="openSearch('video')">
-      <h2>🎬 Search Video Memes</h2>
-      <input type="text" placeholder="Enter keyword..." />
-      <button>Search</button>
-    </div>
-
-    <div class="card" onclick="uploadMeme()">
-      <h2>⬆️ Upload Your Meme</h2>
-      <button>Select Meme (Image or MP4)</button>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 As Mememandu. All rights reserved.</p>
-    <p>Contact support: <a href="mailto:prasuu342@gmail.com">prasuu342@gmail.com</a></p>
+  <footer class="footer">
+    &copy; 2025 Mememandu | Contact support: <a href="mailto:prasuu342@gmail.com">prasuu342@gmail.com</a>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

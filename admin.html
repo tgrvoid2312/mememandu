@@ -1,34 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Login - Mememandu</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="supabase.js" defer></script>
-  <script src="admin.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #fdf2f8;
+    }
+
+    .login-box {
+      max-width: 400px;
+      margin: 5rem auto;
+      padding: 2rem;
+      background: #fff0f6;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-box h2 {
+      color: #c2255c;
+      margin-bottom: 1rem;
+    }
+
+    .login-box input {
+      margin: 0.5rem 0;
+      padding: 0.6rem;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .login-box button {
+      background-color: #e599f7;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .login-box button:hover {
+      background-color: #d63384;
+    }
+
+    #loginError {
+      color: red;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="assets/logo.png" alt="Mememandu Logo">
-      <h1>Mememandu Admin</h1>
-    </div>
-  </header>
+  <div class="login-box">
+    <h2>Admin Login</h2>
+    <input type="text" id="adminUsername" placeholder="Username" />
+    <input type="password" id="adminPassword" placeholder="Password" />
+    <button onclick="loginAdmin()">Login</button>
+    <p id="loginError"></p>
+  </div>
 
-  <main>
-    <section class="login-form">
-      <h2>Admin Login</h2>
-      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
-        <input type="text" id="adminUsername" placeholder="Username" required><br>
-        <input type="password" id="adminPassword" placeholder="Password" required><br>
-        <button type="submit">Login</button>
-      </form>
-      <div id="loginStatus"></div>
-    </section>
-  </main>
+  <script>
+    function loginAdmin() {
+      const username = document.getElementById('adminUsername').value;
+      const password = document.getElementById('adminPassword').value;
+      const error = document.getElementById('loginError');
 
-  <footer>
-    <p>© Mememandu 2025</p>
-  </footer>
+      if (username === 'sujal6969' && password === 'sujal@8042') {
+        window.location.href = 'dashboard.html';
+      } else {
+        error.textContent = 'Invalid credentials. Please try again.';
+      }
+    }
+  </script>
 </body>
 </html>

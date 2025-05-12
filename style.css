@@ -1,97 +1,87 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #ff66cc, #cc66ff);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  background: #fdf2f8;
+  color: #3a3a3a;
 }
 
 header {
+  background: linear-gradient(to right, #f9c5d1, #fbc2eb);
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  font-size: 1.5em;
-  background: rgba(0, 0, 0, 0.1);
+  align-items: center;
 }
 
 .logo {
+  font-size: 1.8rem;
   font-weight: bold;
+  color: #7b2cbf;
 }
 
-.login-btn {
-  color: white;
-  background-color: #ff66cc;
-  padding: 10px 20px;
+.admin-login {
+  color: #7b2cbf;
   text-decoration: none;
-  border-radius: 20px;
-  transition: background 0.3s;
+  font-weight: 500;
 }
 
-.login-btn:hover {
-  background-color: #cc33aa;
-}
-
-.hero {
+.main-content {
   text-align: center;
-  padding: 50px 20px;
+  padding: 2rem;
 }
 
-.hero h1 {
-  font-size: 3em;
-  margin-bottom: 10px;
+.intro h1 {
+  font-size: 2.2rem;
+  color: #b5179e;
 }
 
-.actions {
+.intro p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.search-sections {
   display: flex;
   flex-wrap: wrap;
+  gap: 2rem;
   justify-content: center;
-  gap: 30px;
-  padding: 40px 20px;
 }
 
-.card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 30px;
-  width: 300px;
-  text-align: center;
-  backdrop-filter: blur(8px);
-  transition: transform 0.3s, background 0.3s;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.card input {
-  width: 100%;
-  padding: 10px;
-  border: none;
+.search-box,
+.upload-box {
+  background: #fff0f6;
+  border: 2px solid #f9c5d1;
   border-radius: 10px;
-  margin: 10px 0;
+  padding: 1.5rem;
+  width: 300px;
 }
 
-.card button {
-  background: #ff66cc;
-  border: none;
+.search-box input,
+.upload-box input,
+.upload-box select {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #e599f7;
   color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
-.card button:hover {
-  background: #cc33aa;
+button:hover {
+  background-color: #d63384;
 }
 
-footer {
+.footer {
+  background: #fbc2eb;
   text-align: center;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.1);
-  margin-top: auto;
+  padding: 1rem;
+  margin-top: 3rem;
 }
