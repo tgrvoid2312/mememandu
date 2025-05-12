@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBXoAGSjEoBl02e4mAbAlEnqZyvblq6DPA",
+    authDomain: "free-fire-tournament-app-c2bc1.firebaseapp.com",
+    projectId: "free-fire-tournament-app-c2bc1",
+    storageBucket: "free-fire-tournament-app-c2bc1.firebasestorage.app",
+    messagingSenderId: "173098564355",
+    appId: "1:173098564355:web:9317a5013bd292cae14736",
+    measurementId: "G-S9S3DKPD7P"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - As Mememandu</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <header class="bg-blue-600 text-white p-4 shadow flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+    <a href="index.html" class="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-200">Back to Home</a>
+  </header>
+
+  <main class="p-6 max-w-5xl mx-auto">
+    <section class="mb-10">
+      <h2 class="text-xl font-semibold mb-4">Add New Meme</h2>
+      <form id="uploadForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white p-4 rounded shadow">
+        <input type="text" id="keywords" placeholder="Enter keywords..." class="border p-2 rounded" required>
+        <select id="memeType" class="border p-2 rounded" required>
+          <option value="">Select Meme Type</option>
+          <option value="image">Photo Meme</option>
+          <option value="video">MP4 Meme</option>
+        </select>
+        <input type="file" id="memeFile" accept="image/*,video/mp4" class="border p-2 rounded" required>
+        <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 col-span-full">Upload Meme</button>
+      </form>
+    </section>
+
+    <section>
+      <h2 class="text-xl font-semibold mb-4">Manage Memes</h2>
+      <div id="memeList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
+  </main>
+
+  <script>
+    // TEMP storage until Firebase is integrated
+    const memeList = document.getElementById('memeList');
+    const form = document.getElementById('uploadForm');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const keywords = document.getElementById('keywords').value;
+      const type = document.getElementById('memeType').value;
+      const file = document.getElementById('memeFile').files[0];
+
+      const reader = new FileReader();
+      reader.onload = function() {
+        const src = reader.result;
+        const card = document.createElement('div');
+        card.className = 'bg-white p-4 rounded shadow';
+        card.innerHTML = `
+          <p class="font-medium mb-2">Keywords: ${keywords}</p>
+          ${type === 'image' ? `<img src="${src}" alt="" class="rounded mb-2">` : `<video controls class="rounded mb-2"><source src="${src}" type="video/mp4"></video>`}
+          <button class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600" onclick="this.parentElement.remove()">Delete</button>
+        `;
+        memeList.appendChild(card);
+        form.reset();
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
