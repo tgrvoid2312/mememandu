@@ -1,61 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Mememandu - Home</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-  <script src="supabase.js" defer></script>
-  <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>As Mememandu</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="assets/logo.png" alt="Mememandu Logo">
-      <h1>Mememandu</h1>
-    </div>
+    <div class="logo">🌀 As Mememandu</div>
+    <a href="admin.html" class="login-btn">Login</a>
   </header>
 
-  <main>
-    <section class="intro">
-      <h2>Welcome to Mememandu</h2>
-      <p>Your hub for hilarious photo and video memes. Search, enjoy, or share your own memes with the world!</p>
-    </section>
+  <section class="hero">
+    <h1>Welcome to As Mememandu</h1>
+    <p>The ultimate place to discover and share memes! 🤩</p>
+  </section>
 
-    <section class="cards">
-      <div class="card" onclick="showSection('imageSearch')">
-        <h3>🔍 Search Image Memes</h3>
-        <input type="text" id="imageSearchInput" placeholder="Enter keyword...">
-        <button onclick="searchMemes('image')">Search</button>
-        <div id="imageResults" class="results"></div>
-      </div>
+  <section class="actions">
+    <div class="card" onclick="openSearch('image')">
+      <h2>📷 Search Image Memes</h2>
+      <input type="text" placeholder="Enter keyword..." />
+      <button>Search</button>
+    </div>
 
-      <div class="card" onclick="showSection('videoSearch')">
-        <h3>🎞️ Search Video Memes</h3>
-        <input type="text" id="videoSearchInput" placeholder="Enter keyword...">
-        <button onclick="searchMemes('video')">Search</button>
-        <div id="videoResults" class="results"></div>
-      </div>
+    <div class="card" onclick="openSearch('video')">
+      <h2>🎬 Search Video Memes</h2>
+      <input type="text" placeholder="Enter keyword..." />
+      <button>Search</button>
+    </div>
 
-      <div class="card" onclick="showSection('uploadMeme')">
-        <h3>📤 Upload Meme</h3>
-        <form id="uploadForm" onsubmit="uploadMeme(event)">
-          <input type="file" id="fileInput" required><br>
-          <input type="text" id="keywordsInput" placeholder="Enter keywords (comma separated)" required><br>
-          <select id="typeInput">
-            <option value="image">Image</option>
-            <option value="video">Video</option>
-          </select><br>
-          <button type="submit">Upload</button>
-        </form>
-        <div id="uploadStatus"></div>
-      </div>
-    </section>
-  </main>
+    <div class="card" onclick="uploadMeme()">
+      <h2>⬆️ Upload Your Meme</h2>
+      <button>Select Meme (Image or MP4)</button>
+    </div>
+  </section>
 
   <footer>
-    <p>© Mememandu 2025</p>
-    <p>Contact: <a href="mailto:prasuu342@gmail.com">prasuu342@gmail.com</a></p>
+    <p>&copy; 2025 As Mememandu. All rights reserved.</p>
+    <p>Contact support: <a href="mailto:prasuu342@gmail.com">prasuu342@gmail.com</a></p>
   </footer>
 </body>
 </html>

@@ -1,120 +1,97 @@
-/* General Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
 body {
-  background-color: #f5f5f5;
-  color: #333;
-  text-align: center;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #ff66cc, #cc66ff);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
-  background-color: #000;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  font-size: 1.5em;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.login-btn {
   color: white;
+  background-color: #ff66cc;
   padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: background 0.3s;
 }
 
-header .logo {
-  display: flex;
-  align-items: center;
+.login-btn:hover {
+  background-color: #cc33aa;
 }
 
-header img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+.hero {
+  text-align: center;
+  padding: 50px 20px;
 }
 
-header h1 {
-  font-size: 24px;
-}
-
-main {
-  padding: 30px;
-}
-
-.intro {
-  margin-bottom: 50px;
-}
-
-.intro h2 {
-  font-size: 32px;
+.hero h1 {
+  font-size: 3em;
   margin-bottom: 10px;
 }
 
-.intro p {
-  font-size: 18px;
-  color: #666;
-}
-
-.cards {
+.actions {
   display: flex;
-  justify-content: center;
-  gap: 20px;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 20px;
 }
 
 .card {
-  background-color: #fff;
-  padding: 20px;
-  width: 250px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  width: 300px;
   text-align: center;
-  transition: transform 0.3s ease;
-  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
 
 .card:hover {
   transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.card h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.card input,
-.card select {
+.card input {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  margin: 10px 0;
 }
 
 .card button {
-  background-color: #008CBA;
-  color: white;
-  padding: 10px;
+  background: #ff66cc;
   border: none;
-  width: 100%;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
   cursor: pointer;
-  border-radius: 5px;
+  transition: background 0.3s;
 }
 
 .card button:hover {
-  background-color: #005f75;
-}
-
-.results {
-  margin-top: 20px;
-  color: #555;
+  background: #cc33aa;
 }
 
 footer {
-  background-color: #000;
-  color: white;
-  padding: 20px 0;
-}
-
-footer p {
-  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  margin-top: auto;
 }
