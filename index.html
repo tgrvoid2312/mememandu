@@ -4,13 +4,202 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mememandu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f9c5d1, #7b2cbf);
+      color: white;
+    }
+
+    /* Header Section */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: rgba(234, 233, 233, 0.6);
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 10px;
+      background-color: #ff66cc;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #ff33b2;
+    }
+
+    /* Main Content Section */
+    .main-content {
+      margin-top: 120px; /* Adjusted to make space for fixed header */
+      text-align: center;
+      padding: 50px 10px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+    }
+
+    .intro p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .search-sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+      padding: 0 15px;
+    }
+
+    .search-box,
+    .upload-box {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .search-box:hover,
+    .upload-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      color: #7b2cbf;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    select,
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    input[type="text"],
+    select {
+      background-color: #f9f9f9;
+    }
+
+    button {
+      background-color: #7b2cbf;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #6a1b9a;
+    }
+
+    /* Popup Modal Styles */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+
+    .popup-content {
+      background: rgba(255, 255, 255, 0.9); /* White with transparency */
+      padding: 2rem;
+      border-radius: 10px;
+      width: 350px;
+      text-align: center;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .popup-content h3 {
+      color: #7b2cbf;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .popup-content button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      background-color: #7b2cbf;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .popup-content button:hover {
+      background-color: #6a1b9a;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      color: #7b2cbf;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #7b2cbf;
+      color: white;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
 </head>
 <body>
+
   <header class="header">
     <div class="logo">Mememandu</div>
     <nav>
-      <a href="admin.html" class="admin-login">Admin Login</a>
+      <button class="register-btn" onclick="openPopup()">Register</button>
     </nav>
   </header>
 
@@ -25,14 +214,12 @@
         <h2>Search Image Memes</h2>
         <input type="text" id="imageSearch" placeholder="Search image memes..." />
         <button onclick="searchMemes('image')">Search</button>
-        <div id="imageResults"></div>
       </div>
 
       <div class="search-box">
         <h2>Search Video Memes</h2>
         <input type="text" id="videoSearch" placeholder="Search video memes..." />
         <button onclick="searchMemes('video')">Search</button>
-        <div id="videoResults"></div>
       </div>
 
       <div class="upload-box">
@@ -50,10 +237,56 @@
     </div>
   </main>
 
-  <footer class="footer">
+  <!-- Popup Modal -->
+  <div id="popup" class="popup" onclick="closePopupOnClickOutside(event)">
+    <div class="popup-content" onclick="event.stopPropagation()">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h3>Create New Account</h3>
+      <button onclick="createAccount()">Create Account</button>
+      <button onclick="alreadyHaveAccount()">Already Have an Account?</button>
+      <button onclick="adminRedirect()">Are You an Admin?</button>
+    </div>
+  </div>
+
+  <footer>
     &copy; 2025 Mememandu | Contact support: <a href="mailto:prasuu342@gmail.com">prasuu342@gmail.com</a>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    function openPopup() {
+      document.getElementById('popup').style.display = 'flex';
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    function closePopupOnClickOutside(event) {
+      if (event.target === document.getElementById('popup')) {
+        closePopup();
+      }
+    }
+
+    function createAccount() {
+      alert('Redirect to account creation page!');
+      closePopup();
+    }
+
+    function alreadyHaveAccount() {
+      alert('Redirect to login page!');
+      closePopup();
+    }
+
+    function adminRedirect() {
+      window.location.href = 'admin.html'; 
+      closePopup();
+    }
+
+    function searchMemes(type) {
+      const searchTerm = type === 'image' ? document.getElementById('imageSearch').value : document.getElementById('videoSearch').value;
+      alert(`Searching for ${type} memes with keyword: ${searchTerm}`);
+    }
+  </script>
+
 </body>
 </html>

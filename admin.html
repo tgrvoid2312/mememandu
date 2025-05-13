@@ -2,55 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Login - Mememandu</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
     body {
-      background: #fdf2f8;
+      background: url('burj.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .login-box {
-      max-width: 400px;
-      margin: 5rem auto;
-      padding: 2rem;
-      background: #fff0f6;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.8); /* Transparent white background */
+      padding: 3rem 4rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      transition: transform 0.3s ease-in-out;
     }
 
     .login-box h2 {
-      color: #c2255c;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: #7b2cbf;
+      margin-bottom: 2rem;
+      text-align: center;
     }
 
     .login-box input {
-      margin: 0.5rem 0;
-      padding: 0.6rem;
       width: 100%;
-      border-radius: 5px;
+      padding: 12px 20px;
+      margin: 10px 0;
       border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #f1f1f1;
+      transition: all 0.3s ease;
+    }
+
+    .login-box input:focus {
+      border-color: #7b2cbf;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(123, 44, 191, 0.5);
     }
 
     .login-box button {
-      background-color: #e599f7;
+      background-color: #7b2cbf;
       color: white;
-      padding: 0.6rem 1.2rem;
+      padding: 12px 20px;
       border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      border-radius: 8px;
+      font-size: 1.1rem;
       width: 100%;
-      margin-top: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     .login-box button:hover {
-      background-color: #d63384;
+      background-color: #6a1b9a;
     }
 
     #loginError {
       color: red;
       margin-top: 1rem;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .login-box a {
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 1rem;
+      color: #7b2cbf;
+      text-decoration: none;
+    }
+
+    .login-box a:hover {
+      color: #6a1b9a;
     }
   </style>
 </head>
@@ -61,13 +104,20 @@
     <input type="password" id="adminPassword" placeholder="Password" />
     <button onclick="loginAdmin()">Login</button>
     <p id="loginError"></p>
+    <a href="#">Forgot Password?</a>
   </div>
 
   <script>
+    // Check if inputs are filled and validate credentials
     function loginAdmin() {
       const username = document.getElementById('adminUsername').value;
       const password = document.getElementById('adminPassword').value;
       const error = document.getElementById('loginError');
+
+      if (username === '' || password === '') {
+        error.textContent = 'Please enter both username and password.';
+        return;
+      }
 
       if (username === 'sujal6969' && password === 'sujal@8042') {
         window.location.href = 'dashboard.html';
@@ -75,6 +125,12 @@
         error.textContent = 'Invalid credentials. Please try again.';
       }
     }
+
+    // Add animation to the login box
+    window.onload = () => {
+      const loginBox = document.querySelector('.login-box');
+      loginBox.style.transform = 'scale(1)';
+    };
   </script>
 </body>
 </html>

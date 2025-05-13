@@ -2,137 +2,198 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Dashboard - Mememandu</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    * {
       margin: 0;
-      background-color: #f9c5d1;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #7b2cbf;
-      color: white;
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
+    body {
+      background: url('burj.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
-    .admin-menu {
-      display: none;
-      flex-direction: column;
-      align-items: flex-end;
-      background-color: #7b2cbf;
+    .overlay {
+      background: rgba(255, 255, 255, 0.75);
       position: absolute;
-      top: 60px;
-      right: 20px;
-      border-radius: 10px;
-      padding: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0;
     }
 
-    .admin-menu div {
-      cursor: pointer;
+    .dashboard {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: rgba(123, 44, 191, 0.9);
       color: white;
-      padding: 10px;
-      margin-bottom: 10px;
-      background-color: #ff66cc;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .admin-menu div:hover {
-      background-color: #ff33b2;
-    }
-
-    .menu-icon {
-      cursor: pointer;
-      font-size: 30px;
-      background-color: #7b2cbf;
-      padding: 10px;
-      border-radius: 50%;
-      color: white;
-    }
-
-    .memes-list {
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      position: fixed;
+      height: 100vh;
     }
 
-    .memes-table {
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .sidebar button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .sidebar button:hover,
+    .sidebar button.active {
+      background-color: #ff66cc;
+    }
+
+    .content {
+      margin-left: 250px;
+      padding: 30px;
+      flex: 1;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .memes-table, .users-table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 20px;
     }
 
-    .memes-table th,
-    .memes-table td {
-      padding: 15px;
-      text-align: center;
+    table th, table td {
+      padding: 12px;
       border: 1px solid #ccc;
+      text-align: center;
     }
 
-    .memes-table th {
+    table th {
       background-color: #f9c5d1;
     }
 
-    .memes-table td button {
+    table td button {
       background-color: #ff66cc;
       color: white;
       border: none;
-      padding: 5px 10px;
+      padding: 6px 10px;
+      border-radius: 4px;
       cursor: pointer;
-      border-radius: 5px;
     }
 
-    .memes-table td button:hover {
+    table td button:hover {
       background-color: #d63384;
     }
-
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">Mememandu Admin</div>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  </header>
+  <div class="overlay"></div>
+  <div class="dashboard">
+    <div class="sidebar">
+      <h2>Admin</h2>
+      <button onclick="showSection('analytics')" class="active">📊 Analytics</button>
+      <button onclick="showSection('memes')">🖼️ Manage Memes</button>
+      <button onclick="showSection('users')">👥 User Management</button>
+      <button onclick="showSection('keywords')">✏️ Edit Keywords</button>
+      <button onclick="logout()">🚪 Logout</button>
+    </div>
 
-  <!-- Admin Menu (Initially Hidden) -->
-  <div class="admin-menu" id="adminMenu">
-    <div onclick="manageAllMemes()">📋 Manage All Memes</div>
-    <div onclick="deleteMemes()">🗑️ Delete Memes</div>
-    <div onclick="editKeywords()">📝 Edit Keywords</div>
-  </div>
+    <div class="content">
+      <!-- Analytics -->
+      <div id="analytics" class="section active">
+        <h2>Analytics</h2>
+        <p>Total Memes: <strong>120</strong></p>
+        <p>Users Registered: <strong>15</strong></p>
+        <p>Trending Keywords: <strong>funny, cat, bollywood</strong></p>
+      </div>
 
-  <div class="memes-list">
-    <h2>Uploaded Memes</h2>
-    <table class="memes-table" id="memesTable">
-      <thead>
-        <tr>
-          <th>Thumbnail</th>
-          <th>Type</th>
-          <th>Keywords</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="memesList"></tbody>
-    </table>
+      <!-- Meme Management -->
+      <div id="memes" class="section">
+        <h2>Uploaded Memes</h2>
+        <table class="memes-table" id="memesTable">
+          <thead>
+            <tr>
+              <th>Thumbnail</th>
+              <th>Type</th>
+              <th>Keywords</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="memesList"></tbody>
+        </table>
+      </div>
+
+      <!-- User Management -->
+      <div id="users" class="section">
+        <h2>Manage Users</h2>
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Joined</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>user1</td><td>user1@example.com</td><td>2024-10-02</td></tr>
+            <tr><td>user2</td><td>user2@example.com</td><td>2024-11-15</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Keyword Editor -->
+      <div id="keywords" class="section">
+        <h2>Edit Keywords</h2>
+        <p>Click on a keyword in the meme table to edit and update it live.</p>
+      </div>
+    </div>
   </div>
 
   <script>
-    // Toggle the admin menu visibility
-    function toggleMenu() {
-      const menu = document.getElementById('adminMenu');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.querySelector(`#${id}`).classList.add('active');
+
+      document.querySelectorAll('.sidebar button').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
     }
 
-    // Function to fetch memes from Supabase and display them
+    function logout() {
+      window.location.href = 'index.html';
+    }
+
     async function fetchMemes() {
       const response = await fetch('https://ooaqzetkrmpgbdjtmacx.supabase.co/rest/v1/memes', {
         method: 'GET',
@@ -151,20 +212,12 @@
           <td><img src="${meme.thumbnail}" alt="${meme.keyword}" width="50" /></td>
           <td>${meme.type}</td>
           <td><input type="text" value="${meme.keyword}" data-id="${meme.id}" /></td>
-          <td>
-            <button onclick="deleteMeme(${meme.id})">Delete</button>
-          </td>
+          <td><button onclick="deleteMeme(${meme.id})">Delete</button></td>
         `;
         tableBody.appendChild(row);
       });
     }
 
-    // Manage All Memes
-    function manageAllMemes() {
-      fetchMemes();
-    }
-
-    // Delete a meme
     function deleteMeme(id) {
       fetch(`https://ooaqzetkrmpgbdjtmacx.supabase.co/rest/v1/memes?id=eq.${id}`, {
         method: 'DELETE',
@@ -172,19 +225,12 @@
           'Authorization': 'Bearer YOUR_SUPABASE_API_KEY',
           'Content-Type': 'application/json'
         }
-      })
-      .then(() => {
+      }).then(() => {
         alert('Meme deleted');
         fetchMemes();
       });
     }
 
-    // Edit Meme Keywords (Functionality to be added)
-    function editKeywords() {
-      alert('You can now edit keywords for memes!');
-    }
-
-    // Fetch memes when the page loads
     window.onload = () => fetchMemes();
   </script>
 </body>
